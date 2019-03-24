@@ -1,0 +1,49 @@
+#header {
+    position: relative;
+    z-index: 10;
+    max-width: 100%;
+    box-shadow: rgb(240, 241, 242) 0px 2px 8px;
+    background: rgb(255, 255, 255);
+}
+#logo {
+    float: left;
+    height: 64px;
+    padding-left: 40px;
+    line-height: 64px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+}
+#logo img {
+    height: 32px;
+    margin-right: 16px;
+}
+#logo img + img {
+    position: relative;
+    top: 1px;
+    height: 16px;
+}
+.main-container {
+    padding-right: 30px;
+}
+.current-path {
+    height: 64px;
+    line-height: 64px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    text-decoration: none; 
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+.add-button-container {
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-button-container button {
+    float: right
+}
