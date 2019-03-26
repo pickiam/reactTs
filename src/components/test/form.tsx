@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { Form, Radio, Input } from 'antd';
+import { Page } from '../../common/components/page'
 
-
-export class FormPage extends React.Component {
+interface Props {
+  form: any;
+  detailAdd: any
+}
+export class TestPage extends React.Component<Props, {}> {
   render () {
     const { getFieldDecorator } = this.props.form;
-
-
-    
     return (
       <Form layout="vertical">
         <Form.Item label="Title">

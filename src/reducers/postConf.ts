@@ -1,15 +1,21 @@
 import { actionTypes } from '../common/constants/actionTypes';
-import { postConfEntity } from '../model/postConf'
+import { postConfEntity } from '../model/postConf';
+import { imgList } from '../model/postConf'
+
 
 interface State {
     tableData: postConfEntity[],
     detailData: postConfEntity
 }
+const createImgEmpty = (): imgList => ({
+    uid: Math.random().toString(),
+})
 const createEmpty = ():postConfEntity => ({
     key: '',
     name: '',
     age: '',
-    address: ''
+    address: '',
+    imgList: [createImgEmpty()]
 })
 export const postConfReducer = (state: State = {tableData: [], detailData: createEmpty()}, action) => {
     switch (action.type) {

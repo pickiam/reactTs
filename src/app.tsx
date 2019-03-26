@@ -16,7 +16,7 @@ export const App: React.StatelessComponent<{}> = (props) => {
             <CurrentPage/>
             <Switch>
                 <Route exact path="/" component={PostConfPageContainer} />
-                <Route path="/about" component={TestPageContainer} />
+                {/* <Route path="/about" component={TestPageContainer} /> */}
             </Switch>
           </Col>    
         </Row>

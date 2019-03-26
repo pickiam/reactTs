@@ -23,6 +23,86 @@
     top: 1px;
     height: 16px;
 }
+.loginForm {
+    width: 350px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 20px;
+    margin-left: -175px;
+    margin-top: -150px;
+    border: 1px solid #d9d9d9;
+}
+.loginForm h2 {
+    text-align: center;
+}
+.loginForm label {
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.loginForm input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.loginForm button {
+    line-height: 1.499;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    background-image: none;
+    border: 1px solid transparent;
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+    cursor: pointer;
+    -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 0 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.65);
+    background-color: #fff;
+    border-color: #d9d9d9;
+}
+.loginForm .loginForm-button {
+    margin-top: 30px;
+}
+.loginForm .loginForm-button button{
+    margin-right: 20px;
+}
+.loginForm .loginForm-button button:nth-child(2){
+    margin-right: 0;
+}
 .main-container {
     padding-right: 30px;
 }

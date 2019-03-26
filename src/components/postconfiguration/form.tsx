@@ -31,6 +31,7 @@ export const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
             okText="Create"
             onCancel={this.onCancel}
             onOk={this.onCreate}
+            width="800"
           >
             <Form layout="vertical">
               <Form.Item label="Title">
@@ -42,7 +43,10 @@ export const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
                 )}
               </Form.Item>
               <Form.Item label="Description">
-                {getFieldDecorator('description')(<Input type="textarea" />)}
+                {getFieldDecorator('description')(<Input.TextArea autosize={true}/>)}
+              </Form.Item>
+              <Form.Item label="图片配置">
+                { this.props.children }
               </Form.Item>
               <Form.Item className="collection-create-form_last-form-item">
                 {getFieldDecorator('modifier', {

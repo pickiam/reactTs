@@ -22,7 +22,7 @@ module.exports = {
       'redux-thunk',
     ],
     vendorStyles: [
-     
+     '../node_modules/antd/dist/antd.min.css'
     ]
 
   },

@@ -12,7 +12,7 @@ interface Props extends FormComponentProps {
     onCancel: () => void;
     onOk: () => void;
 } 
-export const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
+export const CollectionCreateForm:any = Form.create({ })(
     // eslint-disable-next-line
     class extends React.Component<Props, {}> {
         private onCancel = () => {
@@ -23,18 +23,17 @@ export const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
         }
 
         render() {
-            const SpecificForm = this.props.components
-        return (
-          <Modal
-            visible={this.props.visible}
-            title="Create a new collection"
-            okText="Create"
-            onCancel={this.onCancel}
-            onOk={this.onCreate}
-          >
-            <SpecificForm form={this.props.form} />
-          </Modal>
-        );
+            return (
+              <Modal
+                visible={this.props.visible}
+                title="Create a new collection"
+                okText="Create"
+                onCancel={this.onCancel}
+                onOk={this.onCreate}
+              >
+              {this.props.children}
+              </Modal>
+            );
       }
     }
   );

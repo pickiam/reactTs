@@ -6,7 +6,7 @@ import { CollectionCreateForm } from './form';
 
 interface Props<T> {
     columns: Array<T>;
-    components: React.Component;
+    components?: any;
     dataSource: Array<T>;
     detailAdd: object;
     fetchData: (pramas: any) => void;
@@ -62,7 +62,7 @@ export class Page extends React.Component<Props<Object>, State> {
           }
     
           console.log('Received values of form: ', values);
-          form.resetFields();
+          form.getFieldsValue();
           this.setState({ visible: false });
         });
     }
@@ -86,7 +86,6 @@ export class Page extends React.Component<Props<Object>, State> {
         })
     }
     public render() {
-        const SpecificForm = this.props.components
         return (
             <div>
                 <div className="add-button-container">
@@ -99,8 +98,9 @@ export class Page extends React.Component<Props<Object>, State> {
                     visible={this.state.visible}
                     onCancel={this.handleCancel}
                     onOk={this.handleOk}
-                    SpecificForm={this.props.components}
-                />
+                >
+                {this.props.children}
+                </CollectionCreateForm>
             </div>
         )
     }

@@ -11,8 +11,8 @@ interface Props {
 
 export const LoginForm: React.StatelessComponent<Props> = (props) => {
     return (
-        <form>
-            <h1>用户登录</h1>
+        <form className="loginForm">
+            <h2>用户登录</h2>
             <Input 
                 name="username"
                 label="username"
@@ -26,16 +26,20 @@ export const LoginForm: React.StatelessComponent<Props> = (props) => {
                 onChange={props.onChange}
                 type='password'
             />
-            <Button 
-                label="登录"
-                className="btn"
-                onClick={props.onSave}
-            />
-            <Button 
-                label="清空"
-                className="btn"
-                onClick={props.onClear}
-            />
+            <div className="loginForm-button">
+                <div style={{float: 'right'}}>
+                    <Button 
+                        label="登录"
+                        className="btn"
+                        onClick={props.onSave}
+                    />
+                    <Button 
+                        label="清空"
+                        className="btn"
+                        onClick={props.onClear}
+                    />
+                </div> 
+            </div>
         </form>
     )
 }

@@ -2,6 +2,7 @@ import * as React from 'react'
 // import { Tables as Table} from '../../common/components/table/table'
 import { Table, Button, Modal, Divider} from 'antd';
 import { CollectionCreateForm } from './form';
+import { PicturesWall } from './PicturesWall'
 import { postConfEntity } from '../../model/postConf'
 
 interface Props<T> {
@@ -15,7 +16,8 @@ interface Props<T> {
 }
 interface State {
     visible: boolean;
-    detail: {}
+    detail: {};
+    previewVisible: boolean;
 }
 
 export class PostConfPage extends React.Component<Props<Object>, State> {
@@ -28,7 +30,8 @@ export class PostConfPage extends React.Component<Props<Object>, State> {
         this.modalShow = this.modalShow.bind(this)
         this.state = {
             visible: false,
-            detail: {}
+            detail: {},
+            previewVisible: false,
         }
         this.columns = [
             {
@@ -50,8 +53,21 @@ export class PostConfPage extends React.Component<Props<Object>, State> {
     private delete = (pramas: any) => {
         this.props.deleteData(pramas)
     }
+    private onPreview = (pramas:any) => {
+        this.setState({
+            previewVisible: true
+        })
+    }
+    private onCancel = () => {
+        this.setState({
+            previewVisible: false
+        })
+    }
     private getTableData(pramas: any = {}) {
         this.props.fetchData(pramas)
+    }
+    private onChange = (pramas: any) => {
+        console.log(pramas)
     }
     private handleOk = () => {
         const form = this.formRef.props.form;
@@ -97,7 +113,16 @@ export class PostConfPage extends React.Component<Props<Object>, State> {
                     visible={this.state.visible}
                     onCancel={this.handleCancel}
                     onOk={this.handleOk}
+                >
+                <PicturesWall 
+                    previewVisible={this.state.previewVisible}
+                    previewImage={this.props.detailAdd.imgList.length ? this.props.detailAdd.imgList[0].url : ''}
+                    fileList={this.props.detailAdd.imgList}
+                    onPreview={this.onPreview}
+                    onChange={this.onChange}
+                    onCancel={this.onCancel}
                 />
+                </CollectionCreateForm>
             </div>
         )
     }
