@@ -7,3 +7,6 @@ export * from './postconfiguration';
 export * from './sider';
 export * from './current';
 export * from './test';
+export * from './customer';
+export * from './introduction'
+export * from './recruitment'

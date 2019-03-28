@@ -1,8 +1,8 @@
 export interface siderEnitity {
     siderItem: menuItemLabelType[],
-    activeMenuItem: string
+    activeMenuItem: any
 }
-type menuItemLabelType = {
+export type menuItemLabelType = {
     path: string,
     name: string
   }

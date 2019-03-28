@@ -1,7 +1,7 @@
 import * as React from 'react'
 // import { Tables as Table} from '../../common/components/table/table'
 import { Table, Button, Modal, Divider} from 'antd';
-import { CollectionCreateForm } from './form';
+import { CollectionCreateForm} from './form';
 import { PicturesWall } from './PicturesWall'
 import { postConfEntity } from '../../model/postConf'
 
@@ -100,6 +100,7 @@ export class PostConfPage extends React.Component<Props<Object>, State> {
             visible: false
         })
     }
+
     public render() {
         return (
             <div>

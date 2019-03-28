@@ -35,6 +35,7 @@ interface Props {
   defaultSelectedKeys: string[];
   menuItemLabel: menuItemLabelType[];
   getMenuItem: () => void;
+  ownProps: any;
 }
 export class Sider extends React.Component<Props, {}> {
   constructor(props) {
@@ -42,7 +43,12 @@ export class Sider extends React.Component<Props, {}> {
     this.onClick = this.onClick.bind(this)
   }
   private onClick(item: any) {
-    this.props.onClick(item)
+    this.props.onClick(item.key)
+  }
+  public componentWillReceiveProps (nextProps) {
+    if (nextProps.menuItemLabel.length !== this.props.menuItemLabel.length) {
+      this.props.onClick(nextProps.ownProps.location.pathname)
+    }
   }
   public componentWillMount() {
     this.props.getMenuItem()
@@ -56,7 +62,7 @@ export class Sider extends React.Component<Props, {}> {
       >
         {
           this.props.menuItemLabel.map((item, index) => 
-          <Menu.Item key={index.toString()}><Link to={item.path}>{item.name}</Link></Menu.Item>
+          <Menu.Item key={item.path}><Link to={item.path}>{item.name}</Link></Menu.Item>
         )
         }
       </Menu>

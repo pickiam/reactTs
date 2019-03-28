@@ -92,7 +92,7 @@ export class Page extends React.Component<Props<Object>, State> {
                     <Button type="primary" onClick={this.modalShow.bind(this, 'add')}>新增</Button>
                 </div>
                 <Table bordered dataSource={this.props.dataSource} columns={[...this.props.columns, ...this.columns]} />
-                <CollectionCreateForm
+                {/* <CollectionCreateForm
                     wrappedComponentRef={this.saveFormRef}
                     detailAdd={this.props.detailAdd}
                     visible={this.state.visible}
@@ -100,7 +100,7 @@ export class Page extends React.Component<Props<Object>, State> {
                     onOk={this.handleOk}
                 >
                 {this.props.children}
-                </CollectionCreateForm>
+                </CollectionCreateForm> */}
             </div>
         )
     }

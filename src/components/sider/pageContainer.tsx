@@ -5,9 +5,12 @@ import { getSiderItemData } from './actions/getSiderItem';
 import { Sider } from './sider';
 import { changeSiderItem } from './actions/changeSider';
 
-const mapStateToProps = (state: State) => ({
+
+
+const mapStateToProps = (state: State, ownProps) => ({
   menuItemLabel: state.sider.siderItem,
-  defaultSelectedKeys: ['0']
+  defaultSelectedKeys: [ownProps.location.pathname],
+  ownProps: ownProps
 });
 
 const mapDispatchToProps = (dispatch) => ({

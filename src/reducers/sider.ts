@@ -1,11 +1,17 @@
 import { actionTypes } from '../common/constants/actionTypes';
-import{ siderEnitity } from '../model/siderEnitity'
+import{ siderEnitity, menuItemLabelType } from '../model/siderEnitity'
 
 const createEmptyEnitity = (): siderEnitity => ({
     siderItem: [],
-    activeMenuItem: ''
+    activeMenuItem: {}
 })
-
+const createPatch = (pramas, pathName) => {
+    for (let index of pramas) {
+      if (index.path === pathName) {
+       return index
+      }
+    }
+  }
 export const siderReducer = (state: siderEnitity = createEmptyEnitity(), action) => {
   switch (action.type) {
     case actionTypes.GET_SIDER_ITEM:
@@ -17,8 +23,12 @@ export const siderReducer = (state: siderEnitity = createEmptyEnitity(), action)
 };
 
 const handleMenuItem = (state: siderEnitity = createEmptyEnitity() , payload) => {
+    if (Array.isArray(payload)) {
+        state.siderItem = payload
+    } else {
+        state.activeMenuItem = createPatch(state.siderItem, payload)
+    }
     return {
         ...state,
-        ...payload
     }
 }

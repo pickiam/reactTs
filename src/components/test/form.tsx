@@ -1,12 +1,47 @@
-import * as React from 'react'
-import { Form, Radio, Input } from 'antd';
-import { Page } from '../../common/components/page'
+ 
+ import * as React from 'react'
+ import { FormComponentProps } from 'antd/lib/form';
+ import { PicturesWall } from '../../common/components/page/PicturesWall'
 
-interface Props {
-  form: any;
-  detailAdd: any
-}
-export class TestPage extends React.Component<Props, {}> {
+ import {
+     Button, Modal, Form, Input, Radio,
+   } from 'antd';
+ 
+ interface Props extends FormComponentProps {
+     detailAdd: any;
+     visible: boolean;
+     title?: string;
+     onCancel: () => void;
+     onOk: () => void;
+ }
+ interface FormProps extends FormComponentProps{
+   detailAdd: any;
+ }
+
+ interface State {
+  previewVisible: boolean;
+
+ }
+export class CollectForm extends React.Component<FormProps, State> {
+  constructor(props) {
+    super(props)
+    this.state = {
+      previewVisible: false
+    }
+  }
+  private onPreview = (pramas:any) => {
+    this.setState({
+        previewVisible: true
+    })
+  }
+  private onCancel = () => {
+      this.setState({
+          previewVisible: false
+      })
+  }
+  private onChange = (pramas: any) => {
+      console.log(pramas)
+  }
   render () {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -20,8 +55,20 @@ export class TestPage extends React.Component<Props, {}> {
           )}
         </Form.Item>
         <Form.Item label="Description">
-          {getFieldDecorator('description')(<Input type="textarea" />)}
+          {getFieldDecorator('description')(<Input.TextArea autosize={true}/>)}
         </Form.Item>
+        <Form.Item label="Description">
+        <PicturesWall 
+                previewVisible={this.state.previewVisible}
+                previewImage={this.props.detailAdd.imgList.length ? this.props.detailAdd.imgList[0].url : ''}
+                fileList={this.props.detailAdd.imgList}
+                onPreview={this.onPreview}
+                onChange={this.onChange}
+                onCancel={this.onCancel}
+                handleRemove={this.onCancel}
+            />
+      </Form.Item>
+
         <Form.Item className="collection-create-form_last-form-item">
           {getFieldDecorator('modifier', {
             initialValue: 'public',
@@ -35,4 +82,5 @@ export class TestPage extends React.Component<Props, {}> {
       </Form>
     )
   }
+
 }

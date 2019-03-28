@@ -5,17 +5,23 @@ import { State } from '../reducers';
 interface Props {
     currentPath: string;
 }
-const Current: React.StatelessComponent<Props> = (props) => {
-    return (
-        <div className="current-path">
-            当前位置：{ props.currentPath }
-        </div>
-    )
+class Current extends React.Component<Props, {}> {
+    render () {
+        return (
+            <div className="current-path">
+                当前模块：{ this.props.currentPath }
+            </div>
+        )
+    }
+    
 }
 const mapStateToProps = (state: State, ownProps: any) => ({
-    currentPath: state.sider.activeMenuItem ? state.sider.activeMenuItem : state.sider.siderItem.length ? state.sider.siderItem[0].name : '',
+    currentPath: state.sider.activeMenuItem.name,
 })
 
+const mapDispatchToProps = (dispatch) => ({
+
+})
 export const CurrentPage = connect(
     mapStateToProps,
     

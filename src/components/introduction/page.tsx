@@ -4,12 +4,14 @@ import { Table, Button, Modal, Divider} from 'antd';
 import { CollectionCreateForm, CollectFormFunction } from '../../common/components/page/form';
 import { CollectForm } from './form'
 import { PicturesWall } from '../../common/components/page/PicturesWall'
-import { postConfEntity } from '../../model/postConf'
+import { WrappedAdvancedSearchForm } from '../../common/components/page/searchForm'
+
+import { introductionEntity } from '../../model/introductionEntity'
 
 interface Props<T> {
     columns: Array<T>;
     dataSource: Array<T>;
-    detailAdd: postConfEntity;
+    detailAdd: introductionEntity;
     fetchData: (pramas: any) => void;
     fetchDetail: (pramas: any) => void;
     fetchDetailClear: () => void;
@@ -21,9 +23,12 @@ interface State {
     visible: boolean;
     detail: {};
     previewVisible: boolean;
+    searchItemList: any;
+    addEdit: string;
+    recordId: number
 }
 
-export class TestPage extends React.Component<Props<Object>, State> {
+export class customerPage extends React.Component<Props<Object>, State> {
     columns: Array<Object>
     state: State
     formRef: any
@@ -35,14 +40,19 @@ export class TestPage extends React.Component<Props<Object>, State> {
             visible: false,
             detail: {},
             previewVisible: false,
+            searchItemList: [{
+                'title': '标题'
+            }],
+            addEdit: 'edit',
+            recordId: 0
         }
         this.columns = [
             {
-                title: 'Action',
+                title: '操作',
                 key: 'action',
                 render: (text, record) => (
                   <span>
-                    <a href="javascript:;" onClick={this.modalShow.bind(this, 'edit')}>编辑</a>
+                    <a href="javascript:;" onClick={this.modalShow.bind(this, 'edit', record)}>编辑</a>
                     <Divider type="vertical" />
                     <a href="javascript:;" onClick={this.delete.bind(this, record)}>删除</a>
                   </span>
@@ -54,7 +64,8 @@ export class TestPage extends React.Component<Props<Object>, State> {
         this.getTableData()
     }
     private delete = (pramas: any) => {
-        this.props.deleteData(pramas)
+        // console.log(pramas)
+        this.props.deleteData(pramas.id)
     }
     private onPreview = (pramas:any) => {
         this.setState({
@@ -78,19 +89,36 @@ export class TestPage extends React.Component<Props<Object>, State> {
           if (err) {
             return;
           } else {
-
+              if (this.state.addEdit === 'edit') {
+                  this.props.updateData(Object.assign(values, {id: this.state.recordId}))
+              } else {
+                this.props.addData(values)
+              }
           }
-          console.log('Received values of form: ', values);
+    
+        //   console.log('Received values of form: ', values);
+          form.resetFields();
           this.setState({ visible: false });
         });
     }
-    private modalShow (pramas: string, record?: string) {
-        this.setState({
-            visible: true
-        })
+    handleSearch = (pramas: any) => {
+        this.getTableData(pramas)
+    }
+    private modalShow (pramas: string, record?: any) {
         if (pramas === 'edit') {
-            this.props.fetchDetail(record)
-        } {
+            this.setState({
+                addEdit: pramas,
+                recordId: record.id,
+                visible: true
+            })
+            this.props.fetchDetail(record.id)
+            
+        } else {
+            this.setState({
+                visible: true,
+                addEdit: pramas,
+                recordId: 0
+            })
             this.props.fetchDetailClear()
         }
 
@@ -108,16 +136,18 @@ export class TestPage extends React.Component<Props<Object>, State> {
         const CollectionForm:any = CollectFormFunction(CollectionCreateForm, CollectForm)
         return (
             <div>
+                <WrappedAdvancedSearchForm searchItemList={this.state.searchItemList} handleSearch={this.handleSearch}/>
                 <div className="add-button-container">
                     <Button type="primary" onClick={this.modalShow.bind(this, 'add')}>新增</Button>
                 </div>
-                <Table bordered dataSource={this.props.dataSource} columns={[...this.props.columns, ...this.columns]} />
+                <Table bordered dataSource={this.props.dataSource} columns={[...this.props.columns, ...this.columns]} rowKey="id"/>
                 <CollectionForm
                     wrappedComponentRef={this.saveFormRef}
                     detailAdd={this.props.detailAdd}
                     visible={this.state.visible}
                     onCancel={this.handleCancel}
                     onOk={this.handleOk}
+                    onChange={this.onChange}
                 >
                 </CollectionForm>
             </div>

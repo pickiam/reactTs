@@ -1,7 +1,7 @@
 
 const baseURL = 'https://www.baidu.com';
 
-const menuItem ={ siderItem: [{path: '/', name: '柯南'}, {path: '/', name: '火影'}, {path: '/', name: '海贼王'}, {path: '/', name: '龙珠'}, {path: '/', name: '马龙白兰度'}, {path: '/', name: '阿尔帕西诺'}] };
+const menuItem =  [{path: '/introduction', name: '车辆介绍'}, {path: '/', name: '招聘信息'}, {path: '/customer', name: '客户评价'}] ;
 
 const getSiderItem = () :Promise<Object> => {
     return Promise.resolve(menuItem)
