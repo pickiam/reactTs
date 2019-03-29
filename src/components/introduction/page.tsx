@@ -50,6 +50,7 @@ export class customerPage extends React.Component<Props<Object>, State> {
             {
                 title: '操作',
                 key: 'action',
+                width: 150,
                 render: (text, record) => (
                   <span>
                     <a href="javascript:;" onClick={this.modalShow.bind(this, 'edit', record)}>编辑</a>
@@ -138,7 +139,7 @@ export class customerPage extends React.Component<Props<Object>, State> {
             <div>
                 <WrappedAdvancedSearchForm searchItemList={this.state.searchItemList} handleSearch={this.handleSearch}/>
                 <div className="add-button-container">
-                    <Button type="primary" onClick={this.modalShow.bind(this, 'add')}>新增</Button>
+                    <Button type="primary" onClick={this.modalShow.bind(this, 'add')} >新增</Button>
                 </div>
                 <Table bordered dataSource={this.props.dataSource} columns={[...this.props.columns, ...this.columns]} rowKey="id"/>
                 <CollectionForm

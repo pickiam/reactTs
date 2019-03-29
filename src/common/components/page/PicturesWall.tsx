@@ -21,7 +21,7 @@ export class PicturesWall extends React.Component<Props, {}> {
   }
   handleChange = (fileList) => this.props.onChange(fileList)
   uploadPic = (pramas)  => {
-    const url = "http://static.cacxtravel.com/upload/up.do?app=changango"
+    const url = "http://192.168.3.56:8080/upload/up"
     let formData = new FormData()
     let _that = this
     formData.append('file', pramas.file)

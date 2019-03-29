@@ -10,10 +10,12 @@ const columns = [{
     title: '职位名称',
     dataIndex: 'position',
     key: 'position',
+    width: 100
   }, {
     title: '工作地点',
     dataIndex: 'address',
     key: 'address',
+    width: 100
   }, {
     title: '岗位职责',
     dataIndex: 'responsibility',

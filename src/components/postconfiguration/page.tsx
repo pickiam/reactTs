@@ -105,7 +105,7 @@ export class PostConfPage extends React.Component<Props<Object>, State> {
         return (
             <div>
                 <div className="add-button-container">
-                    <Button type="primary" onClick={this.modalShow.bind(this, 'add')}>新增</Button>
+                    <Button type="primary"  onClick={this.modalShow.bind(this, 'add')}>新增</Button>
                 </div>
                 <Table bordered dataSource={this.props.dataSource} columns={[...this.props.columns, ...this.columns]} />
                 <CollectionCreateForm

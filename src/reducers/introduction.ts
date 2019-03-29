@@ -30,7 +30,7 @@ export const introductionReducer = (state: State = {tableData: [], detailData: c
 }
 
 const handleData = (state: State = {tableData: [], detailData: createEmpty()}, payload: any) => {
-    if ((<introductionEntity[]>payload).length) {
+    if ((<introductionEntity[]>payload).length >= 0) {
         state.tableData = payload
     } else {
         state.detailData = payload

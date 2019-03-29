@@ -20,6 +20,8 @@ module.exports = {
       'redux',
       'react-redux',
       'redux-thunk',
+      'antd',
+      'jquery'
     ],
     vendorStyles: [
      '../node_modules/antd/dist/antd.min.css'
@@ -56,7 +58,7 @@ module.exports = {
   // For development https://webpack.js.org/configuration/devtool/#for-development
   devtool: 'inline-source-map',
   devServer: {
-    port: 8083,
+    port: 8084,
     noInfo: true,
   },
   plugins: [

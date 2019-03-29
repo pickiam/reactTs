@@ -50,6 +50,7 @@ export class customerPage extends React.Component<Props<Object>, State> {
             {
                 title: '操作',
                 key: 'action',
+                width: 150,
                 render: (text, record) => (
                   <span>
                     <a href="javascript:;" onClick={this.modalShow.bind(this, 'edit', record)}>编辑</a>

@@ -16,7 +16,9 @@ const mapDispatchToProps = (dispatch) => ({
     onChange: (user: userEntity, fieldName: string, value: string) => 
         dispatch(userFieldChangeAction(user, fieldName, value))
 })
-export const LoginPageContainer = connect(
+ const LoginPageContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
   )(LoginPage);
+
+export default LoginPageContainer;

@@ -31,7 +31,7 @@ export const recruitmentReducer = (state: State = {tableData: [], detailData: cr
 }
 
 const handleData = (state: State = {tableData: [], detailData: createEmpty()}, payload: any) => {
-    if ((<recruitmentEntity[]>payload).length) {
+    if ((<recruitmentEntity[]>payload).length >= 0) {
         state.tableData = payload
     } else {
         state.detailData = payload

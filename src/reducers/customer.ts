@@ -30,7 +30,7 @@ export const customerReducer = (state: State = {tableData: [], detailData: creat
 }
 
 const handleData = (state: State = {tableData: [], detailData: createEmpty()}, payload: any) => {
-    if ((<customerEntity[]>payload).length) {
+    if ((<customerEntity[]>payload).length >= 0) {
         state.tableData = payload
     } else {
         state.detailData = payload

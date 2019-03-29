@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Header } from './components';
 import { Row, Col } from 'antd';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
-import { LoginPageContainer, PostConfPageContainer, SiderPageContainer, CurrentPage, MemberPageContainer, TestPageContainer, CustomerPageContainer, introductionPageContainer, RecPageContainer} from './components';
+import {  PostConfPageContainer, SiderPageContainer, CurrentPage, MemberPageContainer, TestPageContainer, CustomerPageContainer, introductionPageContainer, RecPageContainer} from './components';
 export const App: React.StatelessComponent<{}> = (props) => {
   return (
     <div className="container-fluid" >
