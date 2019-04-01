@@ -5,10 +5,11 @@
     "moduleResolution": "node",
     "declaration": false,
     "noImplicitAny": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "jsx": "react",
     "noLib": false,
     "skipLibCheck": true,
+    "importHelpers": true,
     "suppressImplicitAnyIndexErrors": true
   },
   "compileOnSave": false,

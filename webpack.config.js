@@ -2,7 +2,8 @@ let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let webpack = require('webpack');
-
+const tsImportPluginFactory = require('ts-import-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var basePath = __dirname;
 
 module.exports = {
@@ -13,25 +14,14 @@ module.exports = {
   entry: {
     app: './index.tsx',
     appStyles: './css/site.css',
-    vendor: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-      'redux',
-      'react-redux',
-      'redux-thunk',
-      'antd',
-      'jquery'
-    ],
-    vendorStyles: [
-     '../node_modules/antd/dist/antd.min.css'
-    ]
-
   },
   output: {
     path: path.join(basePath, 'dist'),
     filename: '[name].js',
+    chunkFilename: '[name].bundle.js'
   },
+  devtool: false,
+  // productionSourceMap: false,
   module: {
     rules: [
       {
@@ -40,6 +30,9 @@ module.exports = {
         loader: 'awesome-typescript-loader',
         options: {
           useBabel: true,
+          getCustomTransformers: () => ({
+            before: [ tsImportPluginFactory( /** options */) ]
+          }),
         },
       },
       {
@@ -55,8 +48,13 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+        splitChunks: {
+          chunks: 'all'
+        }
+     },
   // For development https://webpack.js.org/configuration/devtool/#for-development
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   devServer: {
     port: 8084,
     noInfo: true,
@@ -72,5 +70,11 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css"
     }),
+    // new webpack.LoaderOptionsPlugin({
+    //   options: {
+    //     productionSourceMap: false
+    //   }
+    // }),
+    // new BundleAnalyzerPlugin()
   ],
 };
